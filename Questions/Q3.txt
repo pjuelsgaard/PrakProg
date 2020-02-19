@@ -1,0 +1,46 @@
+Q3:
+1. What is the mcs option to turn off all warnings?
+mcs -warn:x
+x in [0,1,2,3,4], where 0 is the lowest level, turning off all warnings.
+
+2. What is the mcs option to turn off informational warnings?
+mcs -warn:1
+
+3. Rewrite this piece of code, x=(a>b?a:b), using the if statement.
+if(a>b){x=a;}
+else{x=b;}
+
+4. If you need mathematical functions from, say, cmath.dll library, how do you link your program with the library?
+In the Makefile, have a main executeable, where both the actual main file, and also the library is referenced:
+»
+main.exe : main.cs cmath.dll
+	mcs -out:main.exe -reference:cmath.dll $<
+«
+
+5. What will the following piece of code print?
+»
+int i=0;
+Write("{0}\n",i);
+Write("{0}\n",i++);
+Write("{0}\n",++i);
+«
+
+This will print:
+»
+0
+0
+2
+«
+Since the first Write is the initial value, 0. The second Write prints the value, 0, then adds 1 to it, so i=1. The last Write adds 1 to i, so i=2, THEN prints it.
+
+6. Rewrite the loop while(condition)body using the for loop.
+for(init;condition;increment){body;}
+
+7. Rewrite the loop for(init;cond;inc)body using the while loop.
+var i = init;
+while(condition){body; increment;}
+
+8. Rewrite the loop do body while(condition); using the for loop.
+body; 
+for(init; condition; increment){body;}
+The do-while loop always evaluates at least 1 time, since the boolean is evaluated AFTER the loop.

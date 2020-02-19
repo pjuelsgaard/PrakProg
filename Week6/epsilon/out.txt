@@ -1,0 +1,13 @@
+Maxval of int. i is
+ 2147483647
+ which is 1.00 of int.MaxValue
+Minval of int. i is
+ -2147483648
+ which is 1.00 of int.MinValue
+For doubles, the apparent machine epsilon is 2.22044604925031E-16
+For floats, the apparent machine epsilon is 1.192093E-07
+Floats:
+ Summing up, we get 1, and summing down we get 1, with a difference 0
+Doubles:
+ Summing up, we get 1, and summing down we get 1, with a difference 0
+The statement »The final function worked« was True
