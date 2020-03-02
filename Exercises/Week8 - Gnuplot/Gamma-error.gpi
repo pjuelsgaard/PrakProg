@@ -1,0 +1,4 @@
+set term svg background rgb "white"
+set out "Gamma-error.svg"
+set log y
+plot [:100] "out.gamma.error.txt" using ($1):(abs(($2-$3)/($3))) with lines

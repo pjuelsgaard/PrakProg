@@ -1,0 +1,10 @@
+set term svg background rgb "white"
+set out "Erf.svg"
+set xlabel "x"
+set ylabel "y"
+set key bottom right
+set tics out
+set xzeroaxis
+set yzeroaxis
+set title "Errorfunction w. test n' shit"
+plot [-3.5:3.4][-1.1:1.1] "out.erf.txt" with lines title "Errorfunction", "out.erf.test.txt" with points pt 7 title "erf from c"

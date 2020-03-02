@@ -1,0 +1,6 @@
+set term svg background rgb "white"
+set out "PartA.svg"
+set xlabel "x"
+set ylabel "y"
+plot "out1.A.txt" title "Analytic solution" with lines \
+, "out.A.txt" title "Numerical solution" with lines

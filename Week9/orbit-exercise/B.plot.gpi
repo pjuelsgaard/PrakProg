@@ -1,0 +1,5 @@
+set term svg background rgb "white"
+set out "PartB.svg"
+plot "out0.B.txt" using(1/$2)*sin($1):(1/$2)*cos($1) with lines title "1" \
+, "out1.B.txt" using(1/$2)*sin($1):(1/$2)*cos($1) with lines title "2" \
+, "out2.B.txt" using(1/$2)*sin($1):(1/$2)*cos($1) with lines title "3" \

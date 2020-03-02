@@ -1,0 +1,6 @@
+set term svg background rgb "white"
+set out "C.svg"
+set xlabel "alpha"
+set ylabel "E"
+set title "E(alpha)"
+plot [][0:1] "plotData.txt" with lines
