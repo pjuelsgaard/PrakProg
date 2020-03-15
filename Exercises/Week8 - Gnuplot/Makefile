@@ -1,4 +1,4 @@
-all: Gamma.svg Gamma-error.svg Erf.svg
+all: Gamma.svg Gamma-error.svg B.svg C.svg
 
 Gamma-error.svg: Gamma-error.gpi out.gamma.txt out.gamma.error.txt
 	gnuplot $<
@@ -32,7 +32,7 @@ main-erf.exe : main-erf.cs math.dll
 
 
 
-math.dll: gamma.cs erf.cs
+math.dll: gamma.cs erf.cs ~/matlib/complex.cs ~/matlib/cmath.cs
 	mcs -target:library -out:$@ $^
 
 

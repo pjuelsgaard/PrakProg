@@ -1,0 +1,24 @@
+set term svg background rgb "white"
+set out "CGamma.svg"
+set title "3D |Complex Gamma(z)|"
+set xlabel "Re(z)"
+set ylabel "Im(z)"
+set zlabel "|Gamma(z)|" rotate parallel
+set pm3d
+set grid
+set contour both
+#unset surface
+set hidden3d
+set cntrlabel onecolor
+set view ,300
+
+
+roof(z) = z <= 6? z : 6 # Creates a roof for plotted values at 6
+splot "out.txt" using 1:2:(roof($3)) with lines notitle # with lines title "|Gamma(z)|"#\
+	#, "out.test.txt" with points pt 7 title "True LogGamma"
+
+
+
+
+
+

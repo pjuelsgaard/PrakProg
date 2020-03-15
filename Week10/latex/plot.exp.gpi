@@ -1,0 +1,6 @@
+set term cairolatex input size 7cm,5cm # "input" lets the compiler choose it's own font
+set out "plotexp.tex"
+
+plot [-2:2] besj0 (x) with lines title "$j_0(x)$"\
+	,besj1(x) with lines title "$j_1(x)$"\
+	,"out.exp.txt" with lines title "$$\exp(x)$$"

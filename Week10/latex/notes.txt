@@ -1,0 +1,2 @@
+# the report system views ms.tex as manuscript.tex as the main file
+Google scholar keeps track of the stuff we do

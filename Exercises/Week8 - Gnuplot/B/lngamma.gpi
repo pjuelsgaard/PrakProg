@@ -1,0 +1,17 @@
+set term svg background rgb "white"
+set out "LnGamma.svg"
+set xlabel "x"
+set ylabel "Ln(Gamma(x))"
+set key bottom right
+set tics out
+set xzeroaxis
+set yzeroaxis
+set title "Gammmafunction n' shit"
+plot [][] "out.txt" with lines title "LogGammafunction"\
+	, "out.test.txt" with points pt 7 title "True LogGamma"
+
+
+
+
+
+

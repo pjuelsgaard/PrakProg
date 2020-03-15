@@ -1,0 +1,26 @@
+\documentclass[twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{An example of \LaTeX and Gnuplot: Exponential stuff}
+\author{Farmand}
+\begin{document}
+\maketitle
+The exp-fun is the solution to dillerligning
+\begin{equation}\label{diffeq}
+y'(x) = y(x)\;.\\
+\end{equation}
+with the noundary condition
+\begin{equation}\label{bounds}
+y(0)=1\;.\\
+\end{equation}
+
+Here we'll put a figure
+
+\begin{figure}[h]
+\input{plotexp.tex}
+\caption{The exp-fun and some bessel functions (hopefully)}
+\end{figure}
+
+\end{document}
