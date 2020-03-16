@@ -1,0 +1,73 @@
+\documentclass{memoir}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{commath}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[left=2cm, top=2cm]{geometry}
+\usepackage{pgfplotstable}
+\usepackage{array}
+\usepackage{cleveref}
+\usepackage{wrapfig}
+\title{Sine integral}
+\date{}
+\begin{document}
+\section*{Sine integral}
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\input{SinIntPlot.tex}
+\end{wrapfigure}
+The sine integral is part of the trigonometric integrals. It is defined in the following two ways 
+\begin{align*}
+	\mathrm{Si}(x)&=\int_{0}^{x}\frac{\sin t}{t}\dif x\\
+	\mathrm{si}(x)&=-\int_{x}^{\infty}\frac{\sin t}{t}\dif x
+\end{align*}
+Both integrals are antiderivatives of the sinc function $\frac{\sin x}{x}$, but pertaining to different limits of the sinc function, as $\mathrm{Si}(x)$ is the antiderivative whose limit is $0$ as $x\rightarrow 0$, while $\mathrm{si}$ is the antiderivative whose value is $0$ as $x\rightarrow\infty$.
+The integrals are related to each other by the integral \ref{Dirichlet}, the proof for which can be seen in \nameref{DirProof}
+\begin{align}
+	\label{Dirichlet}
+	\mathrm{Si}(x)-\mathrm{si}(x)&=\int_{0}^{\infty}\frac{\sin t}{t}\dif t=\frac{\pi}{2}
+\end{align}
+This property is important when implementing the \textit{quad} integration routines, as the infinite integral of the \textit{Sin} function in $C\#$ takes an enormous amount of time.\\
+Furthermore, for very large arguments ($x>700$), the solution exhibits sudden noise, uncharacteristic of the actual function. To avoid this, the functions were modified such that $\mathrm{Si}(x>700)=\frac{\pi}{2}$ and $\mathrm{si}(x>700)=0$, as the are already reasonably close to these values at this point.
+
+
+
+
+\appendix
+\section*{Appendix A}
+\label{DirProof}
+Starting with equation \ref{Dirichlet}, it is rewritten into a function of the variable $a$
+\begin{align*}
+	f(a)&=\int_{0}^{\infty}e^{-at}\frac{\sin t}{t}\dif t
+\end{align*}
+Where the particular integral used is $f(0)$.
+The, utilizing Feynman's trick, we differentiate with respect to $a$
+\begin{align*}
+	\od{}{a}f&=\od{}{a}\int_{0}^{\infty} e^{-at}\frac{\sin t}{t}\dif t = \int_{0}^{\infty} \pd{}{a}e^{-at}\frac{\sin t}{t}\dif t = -\int_{0}^{\infty} e^{-at}\sin t \dif t
+\end{align*}
+Then rewriting with $\sin t = -\frac{1}{2i}\big(e^{it}-e^{-it}\big)$
+\begin{align*}
+	\od{f}{a}&=-\int_{0}^{\infty}e^{-at} \,\frac{e^{it}-e^{-it}}{21}\dif t=\frac{1}{2i}\int_{0}^{\infty}e^{-(a+i)t}-e^{-(a-i)t}\dif t\\
+	&= \frac{1}{2i}\Big[ \frac{1}{a-i}e^{-(a-i)t}-\frac{1}{a+i}e^{-(a+i)t}  \Big]_0^{\infty}=-\frac{1}{1+a^2}
+\end{align*}
+Then applying integration
+\begin{align*}
+	f=\int \od{f}{a}\dif a=-\int \frac{1}{1+a^2}\dif a=-\arctan a + C
+\end{align*}
+Determining the integration constant $C$ from limit requirements
+\begin{align*}
+	\lim_{a\rightarrow \infty}f&=0=\lim_{a\rightarrow \infty}(C-\arctan a)\implies\\
+	C&=\lim_{a\rightarrow \infty}\arctan a = \frac{\pi}{2}
+\end{align*}
+Such that
+\begin{align*}
+	f(a)= \frac{\pi}{2}-\arctan &a = \int_{0}^{\infty}e^{-at}\frac{\sin t}{t}\dif t\implies\\
+	\int_{0}^{\infty}\frac{\sin t}{t}\dif t &= f(0) = \frac{\pi}{2}
+\end{align*}
+
+
+
+\end{document}
