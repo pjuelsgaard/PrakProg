@@ -3,7 +3,8 @@ using static System.Console;
 using static System.Math;
 using System.Collections.Generic;
 using System.IO;
-using static lspline;
+using System.Linq;
+using static qspline;
 
 class main{
 	static int Main(){
@@ -19,10 +20,12 @@ class main{
 			ys.Add(yi);
 		}
 		double q=0;
-		while(q<=xs[xs.Count-1]){
-			double S = lspline.Spline(xs, ys, q);
-			double SInt = lspline.Int(xs, ys, q);
-			Write("{0}\t{1}\t{2}\t{3}\t{4}\n", q, S, Sin(q), SInt, 1-Cos(q));
+		while(q<=xs.Max()){
+			double S = qspline.Spline(xs, ys, q, 0);
+			double SInt = qspline.Spline(xs, ys, q, -1);
+			double SD =  qspline.Spline(xs, ys, q, 1);
+			//Write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\n",S,S,S,S,S,S,S);
+			Write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\n", q, S, Sin(q), SInt, 1-Cos(q), SD, Cos(q));
 			q += 0.01;
 		}	
 

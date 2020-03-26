@@ -70,7 +70,7 @@ public static double[] Int(List<double> xs, List<double> ys, List<double> z){
 
 
 // Quadratic splines
-public class qspline{
+class qspline{
 
 public static int binsearch(double[] x, double z){ // Assumes ordered array
 	int i=0;
@@ -82,49 +82,33 @@ public static int binsearch(double[] x, double z){ // Assumes ordered array
 	return i;
 }
 
-public static double Spline(double[] xs, double[] ys, double z, int d){
+public Spline(double[] xs, double[] ys, double z){
 	if(z<xs.Min() || z>xs.Max()){
 		System.Console.Error.Write("z is out of known bounds\n");
 		return Double.NaN;
 	}
-	int n = xs.Length -2; // Index of 2ndfinal entry of xs
-	
+	int n = xs.Length -r1; // Index of 2ndfinal entry of xs
 	// Arrays for a-coefficients of different routesof recursion
-	double[] c_up = new double[n+1]; c_up[0]=0;
-	double[] c_down = new double[n+1]; c_down[n]=0;
-	double[] ps = new double[n+1];
-	double[] bs = new double[n+1];
-	
+	double[] c_up = new double[n]; c_up[0]=0;
+	double[] c_down = new double[n]; c_down[n]=0;
+	double[] p = new double[n];
 	// Create all values of p
-	for(int j = 0; j<=n; j++){ps[j] = (ys[j+1]-ys[j])/(xs[j+1]-xs[j]);}
+	for(int j = 0; j<=n; j++){p[j] = (ys[j+1]-ys[j])/(xs[j+1]-xs[j]);}
 	// Create values of c from both recursions
 	for(int k = 1; k<=n; k++){
-		c_up[k] = (ps[k]-ps[k-1]-c_up[k-1]*(xs[k-1]-xs[k]))/(xs[k+1]-xs[k]);
-		c_down[n-k] = (ps[n-k+1]-ps[n-k]-c_down[n-k+1]*(xs[n-k+2]-xs[n-k+1]))/(xs[n-k+1]-xs[n-k]);
+		c_up[k] = (p[k]-p[k-1]-c_up[k-1]*(xs[k-1]-xs[k]))/(xs[k+1]-xs[k]);
+		c_down[n-k] = (p[n-k+1]-p[n-k]-c_down[n-k+1]*(xs[n-k+2]-xs[n-k+1]))/(xs[n-k+1]-xs[n-k]);
 	}
 	// Retrieving elementwise average of c
-	double[] cs = new double[n+1];
-	for(int l =0; l<=n; l++){
-		cs[l]=(c_up[l]+c_down[l])/2;
-		bs[l] = ps[l]-cs[l]*(xs[l+1]-xs[l]);
-	}
+	double[] c = new double[n];
+	for(int l =0; l<=n; l++){c[l]=(c_up[l]+c_down[l])/2;}
+
 	int i = binsearch(xs, z);
-	if(d == 1){return bs[i] + 2*cs[i]*(z-xs[i]);} // Derivative
-	if(d == -1){ // Integral from 0-> z
-		double A = 0;
-		for(int m=0; m<i; m++){
-			A += ys[m]*(xs[m+1]-xs[m])+bs[m]/2 *(xs[m+1]-xs[m])*(xs[m+1]-xs[m]) + cs[m]/3 *(xs[m+1]-xs[m])*(xs[m+1]-xs[m])*(xs[m+1]-xs[m]);
-		}
-		double B = ys[i]*(z-xs[i])+bs[i]/2 *(z-xs[i])*(z-xs[i]) + cs[i]/3 *(z-xs[i])*(z-xs[i])*(z-xs[i]);
-		return A+B;}
-	return ys[i] + bs[i]*(z-xs[i])+cs[i]*(z-xs[i])*(z-xs[i]); // Spline value at z
-	
-	//return Convert.ToDouble(n);
+	double b = p[i] - c[i]*(xs[i+1]-xs[i]);
+	return ys[i] + b*(z-xs[i])+c[i]*(z-xs[i])*(z-xs[i]);
 }
-public static double Spline(List<double> xs, List<double> ys, double z, int d){
-	return Spline(xs.ToArray(), ys.ToArray(), z, d);
-}
-	
+
+
 
 
 

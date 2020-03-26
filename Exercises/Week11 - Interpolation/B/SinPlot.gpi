@@ -1,0 +1,37 @@
+set term svg background rgb "white"
+set out 'Sinplot.svg'
+set size 3,3
+
+set multiplot layout 3,1
+#set title "Sine Function"
+set size 1,0.33
+#set xlabel 'x'
+#set ylabel 'y'
+set tics out
+#set key out
+plot "out.txt" using 1:2 with lines title "Quadratic spline"\
+	, "out.txt" using 1:3 with lines title "Sin(x)"\
+	, "../data.txt" using 1:2 with points pt 7 title "Test Values"
+
+
+#set title "Sine Integrated"
+set size 1,0.33
+#set xlabel 'x'
+#set ylabel 'y'
+set tics out
+#set key out
+plot "out.txt" using 1:4 with lines title "Quadratic spline Integral"\
+	, "out.txt" using 1:5 with lines title "1-Cos(x)"\
+	, "../data.txt" using 1:3 with points pt 7 title "Test Values"
+
+#set title "Cos (Sine Derived)"
+set size 1,0.33
+set xlabel 'x'
+#set ylabel ''
+set tics out
+#set key out
+plot "out.txt" using 1:6 with lines title "Derivative of spline"\
+	, "out.txt" using 1:7 with lines title "Cos(x)"\
+	, "../data.txt" using 1:4 with points pt 7 title "Test Values"
+
+unset multiplot

@@ -5,14 +5,15 @@
 SinPlot.svg : SinPlot.gpi out.txt
 	gnuplot $<
 
-out.txt : A.exe
+out.txt: B.exe
 	mono $< > $@
 
-A.exe : A.cs spline.dll
+B.exe : B.cs spline.dll
 	mcs $< -reference:$(word 2, $^)
 
-spline.dll : spline.cs
+spline.dll : ../A/spline.cs
 	mcs $< -target:library -out:$@
 
+.PHONEY:
 clean:
 	rm -f *.txt *.exe *.dll *.svg
