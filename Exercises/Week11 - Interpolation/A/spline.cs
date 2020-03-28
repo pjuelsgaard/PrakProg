@@ -125,7 +125,83 @@ public static double Spline(List<double> xs, List<double> ys, double z, int d){
 	return Spline(xs.ToArray(), ys.ToArray(), z, d);
 }
 	
+}
 
+
+// Cubic splines
+public class cspline{
+
+public static int binsearch(double[] x, double z){ // Assumes ordered array
+	int i=0;
+	int j=x.Length-1;
+	while(j-i>1){
+		int mid = (i+j)/2;
+		if(z>x[mid]) i=mid ; else j=mid;
+	}
+	return i;
+}
+
+public static double Spline(double[] xs, double[] ys, double z, int diff){
+	int n = xs.Length -1; // Index of the last entry in xs-array
+
+	// Preparing the coefficient arrays
+	double[] b = new double[n+1];
+	double[] c = new double[n]; c[0] = 0;
+	double[] d = new double[n];
+	double[] h = new double[n];
+	double[] p = new double[n];
+	for(int i = 0; i < n; i++){
+		h[i] = xs[i+1]-xs[i];
+		p[i] = (ys[i+1]-ys[i])/h[i];
+	}
+
+	// Preparing arrays for triangular matrix
+	double[] D = new double[n+1]; D[0] = 2; D[n] = 2;
+	double[] Q = new double[n]; Q[0] = 1;
+	double[] B = new double[n+1]; B[0] = 3*p[0]; B[n] = 3*p[n-1];
+	for(int i=0; i<n-1; i++){
+		D[i+1] = 2*h[i]/h[i+1] +2;
+		Q[i+1] = h[i]/h[i+1];
+		B[i+1] = 3*(p[i] + p[i+1]*h[i]/h[i+1]);
+	}
+
+	// Running the Gauss elimination
+	for(int i=1; i<n; i++){
+		D[i] = D[i] - Q[i-1]/D[i-1];
+		B[i] = B[i] - B[i-1]/D[i-1];
+	}
+
+	// Calculating the b's
+	b[n] = B[n]/D[n];
+	for(int i = n-1; i<=0; i--){
+		b[i] = (B[i]-Q[i]*b[i+1])/D[i];
+	}
+
+	// Calculating c's and d's
+	for(int i=0; i<n; i++){
+		c[i] = (-2*b[i]-b[i+1]+3*p[i])/h[i];
+		d[i] = (b[i]+b[i+1]-2*p[i])/h[i]/h[i];
+	}
+	
+	int q = binsearch(xs, z);
+	double zx = z-xs[q];
+
+	if(diff==1){return b[q]+2*c[q]*zx+3*d[q]*zx*zx;}
+	if(diff==-1){
+		double M = 0;
+		double N = ys[q]*zx + b[q]*zx*zx/2 + c[q]*zx*zx*zx/3 + d[q]*zx*zx*zx*zx/4;
+		for(int i=0; i<q; i++){
+			M+= ys[i]*h[i] + b[i]*h[i]*h[i]/2 + c[i]*h[i]*h[i]*h[i]/3 + d[i]*h[i]*h[i]*h[i]*h[i]/4;
+		}
+		return M+N;
+	}
+	return ys[q]+b[q]*zx+c[q]*zx*zx+d[q]*zx*zx*zx;
 
 
 }
+public static double Spline(List<double> xs, List<double> ys, double z, int diff){
+	return Spline(xs.ToArray(), ys.ToArray(), z, diff);
+}
+
+}
+

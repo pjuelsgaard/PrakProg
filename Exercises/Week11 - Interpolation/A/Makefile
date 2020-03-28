@@ -14,5 +14,11 @@ A.exe : A.cs spline.dll
 spline.dll : spline.cs
 	mcs $< -target:library -out:$@
 
+../data.txt : ../sin.exe
+	mono $< > $@
+
+../sin.exe : ../sin.cs
+	mcs $<
+
 clean:
 	rm -f *.txt *.exe *.dll *.svg

@@ -2,13 +2,14 @@
 #all : out.txt
 #	cat $<
 
-SinPlot.svg : SinPlot.gpi out.txt
+SinPlot.svg PlotCompare.svg: SinPlot.gpi SplineCompare.gpi out.txt
 	gnuplot $<
+	gnuplot $(word 2, $^)
 
-out.txt: B.exe
+out.txt: C.exe
 	mono $< > $@
 
-B.exe : B.cs spline.dll
+C.exe : C.cs spline.dll
 	mcs $< -reference:$(word 2, $^)
 
 spline.dll : ../A/spline.cs
