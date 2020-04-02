@@ -201,18 +201,19 @@ public bool equals(matrix B,double eps=1e-6){
 }
 
 // Method for QR-decomposition via Gram-Schmidt ortogonalization
-// Note: A[row,column] = A[column][row]
+// Note: A[row,column] = A[column][row], size1 = #rows, size2 = #columns
 public static void qr_gs_decomp(matrix A, matrix R){
 	//Assert.IsTrue(R.size1 == A.size1 && R.size2 == R.size1);
 	// Constructing Q and R
 	matrix Q = new matrix(A.size1, A.size2);
 	
+	// Applying Gram-Schmidt
 	for(int i = 0; i<A.size2; i++){
 		R[i,i] = Math.Sqrt(A[i].dot(A[i]));
 		Q[i] = A[i]/R[i,i];
 		for(int j = i+1; j<A.size2; j++){
 			R[i,j] = Q[i].dot(A[j]);
-			A[j] -= Q[i] * Q[i,j];
+			A[j] -= Q[i] * R[i,j];
 		}
 	}
 
@@ -224,6 +225,38 @@ public static void qr_gs_decomp(matrix A, matrix R){
         }
 		
 }
+
+public static vector qr_gs_solve(matrix Q, matrix R, vector b){
+	vector x = new vector(b.size);
+	for(int i = 0; i<x.size;i++)x[i]=0; // Sets all intitial values of x=0
+	vector QTb = Q.T * b;
+	// Back-substitution
+	for(int i = b.size-1; i>=0; i--){
+		x[i] = (QTb[i]-(R*x)[i])/R[i,i];
+	}
+	return x;
+}
+
+public static matrix qr_gs_inverse(matrix Q, matrix R){
+	// Initiate matrix to be inverse of R
+	matrix invR = new matrix(R.size1, R.size2);
+	for(int i = invR.size1-1; i>= 0;i--){
+		invR[i,i] = 1/R[i,i]; // Handles the diagonal element
+		for(int j = i+1; j<invR.size2; j++){ 
+			// Takes care of the rest of the row, when reducing the diagonal value
+			invR[i,j] /= R[i,i];
+		}
+		for(int k = i-1; k>=0; k--){ // Subtracts values from upper-row elements
+			for(int l = i; l<invR.size2;l++){
+				invR[k,l] -= R[k,i]*invR[i,l];
+			}
+		}
+	}
+	// Now we can create the inverse matrix
+	matrix B = invR*Q.T; 
+	return B;
+}
+
 
 // Method to write out matrix elements w. 2 decimal points, if wanted
 public static void print2(matrix Q){
