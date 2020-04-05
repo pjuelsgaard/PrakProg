@@ -226,6 +226,8 @@ public static void qr_gs_decomp(matrix A, matrix R){
 		
 }
 
+
+// Solving a linear system with QR-decomposition
 public static vector qr_gs_solve(matrix Q, matrix R, vector b){
 	vector x = new vector(b.size);
 	for(int i = 0; i<x.size;i++)x[i]=0; // Sets all intitial values of x=0
@@ -237,6 +239,7 @@ public static vector qr_gs_solve(matrix Q, matrix R, vector b){
 	return x;
 }
 
+// Using QR-decomposition to find the inverse of a matrix
 public static matrix qr_gs_inverse(matrix Q, matrix R){
 	// Initiate matrix to be inverse of R
 	matrix invR = new matrix(R.size1, R.size2);
@@ -256,6 +259,49 @@ public static matrix qr_gs_inverse(matrix Q, matrix R){
 	matrix B = invR*Q.T; 
 	return B;
 }
+
+
+// QR-decomposition by Givens rotation
+public static void givens_qr(matrix A){
+	for(int q = 0; q < A.size2; q++){
+		for(int p=q+1; p<A.size1; p++){
+			double theta = Math.Atan2(A[p,q], A[q,q]);
+			for(int i = q; i<A.size2; i++){
+				double xq = A[q,i];
+				double xp = A[p,i];
+				A[q,i] = xq*Math.Cos(theta) + xp*Math.Sin(theta);
+				A[p,i] = -xq*Math.Sin(theta) + xp*Math.Cos(theta);
+			}
+			A[p,q] = theta;
+		}
+	}
+}
+// Using givens rotation to solve equation system. Use decomposed matrix of angles as input
+public static vector givens_qr_solve(matrix QR, vector b){
+	// First we create the vector Gb=Q.T * b
+	for(int q=0; q<QR.size2; q++){
+		for(int p=q+1; p<QR.size1; p++){
+			double theta = QR[p,q];
+			double bq = b[q];
+			double bp = b[p];
+			b[q] = bq*Math.Cos(theta)+bp*Math.Sin(theta);
+			b[p] = -bq*Math.Sin(theta)+bp*Math.Cos(theta);
+		}
+	}
+	// Solving the system with back-substitution
+	vector x = new vector(b.size);
+	for(int i=0;i<x.size;i++)x[i]=0; // Creating the solution vector
+	for(int i = b.size-1; i>=0; i--){
+		x[i] = (b[i]-(QR*x)[i])/QR[i,i];
+	}
+	return x;
+}
+
+
+
+
+
+
 
 
 // Method to write out matrix elements w. 2 decimal points, if wanted

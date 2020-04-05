@@ -6,8 +6,8 @@ using static matrix;
 public static class main{
 public static int Main(){
 	Random rand = new Random();
-// Part 3: Creating the inverse of a matrix
-        Write("Part 3: Inverse of matrix\n");
+	// Creating the inverse of a matrix
+        Write("Inverse of matrix\n");
         matrix A = new matrix(10,10);
         for(int i = 0; i<A.size1; i++){
                 for(int j = 0; j<A.size2; j++){
