@@ -229,11 +229,12 @@ public static void qr_gs_decomp(matrix A, matrix R){
 
 // Solving a linear system with QR-decomposition
 public static vector qr_gs_solve(matrix Q, matrix R, vector b){
-	vector x = new vector(b.size);
+	vector x = new vector(R.size2);
 	for(int i = 0; i<x.size;i++)x[i]=0; // Sets all intitial values of x=0
 	vector QTb = Q.T * b;
+	
 	// Back-substitution
-	for(int i = b.size-1; i>=0; i--){
+	for(int i = x.size-1; i>=0; i--){
 		x[i] = (QTb[i]-(R*x)[i])/R[i,i];
 	}
 	return x;
