@@ -1,0 +1,8 @@
+set term svg background rgb "white"
+set out 'A.svg'
+
+set title "Eigenfunctions for energystates n=1,2,3"
+set xlabel "x/L"
+set ylabel "phi"
+plot 'out.txt' using 1:2 with lines title "Calculated"\
+	, 'out.txt' using 1:3 with lines title "Exact"
