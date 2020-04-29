@@ -19,6 +19,7 @@ public static int Main(){
 	vector e = new vector(n);
 	int sweeps = diag.jacobian(H,V, e);
 	
+	// Eigenfunction for particle in box with energystate n=m+1, with L=1
 	Func<double, int,double> f = (x,m) => Math.Cos(m*Math.PI)*0.2*Math.Sin((m+1)*Math.PI*x);
 
 

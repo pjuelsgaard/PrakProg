@@ -232,4 +232,4 @@
 
 
 t_1/2 = 4.0445 +- 2.8065, which is relatively close to the modern accepted value of 3.6319 days
-Time: 93483
+Time: 93438

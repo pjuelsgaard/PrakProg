@@ -1,0 +1,7 @@
+set term svg background rgb "white"
+set out 'B.svg'
+set title "Time of operation"
+set xlabel "Dimension n of matrix"
+set ylabel "Time (ticks)"
+plot 'out.txt' using 1:3 with lines title "Cubic fit"\
+	, '' using 1:2 with points title "Measurements"
