@@ -8,7 +8,7 @@ public static int Main(){
 	
 	// This part tested whether it worked at all
 	Random rand = new Random();
-	int nmax = 100;
+	int nmax = 10;
 	var watch = new System.Diagnostics.Stopwatch();
 	List<double> ts = new List<double>();
 	List<double> ns = new List<double>();
@@ -46,8 +46,27 @@ public static int Main(){
 	for(int i =0; i<ts.Count; i++){
 		Write($"{ns[i]}\t{ts[i]}\t{f(ns[i])}\n");
 	}
-
-
+	
+	matrix A3 = new matrix(10,10);
+	matrix V3 = A3.copy();
+	vector e3 = new vector(A3.size1);
+	// Create fixed symmetric random matrix
+	Random fixrand = new Random(3);
+	for(int i =0; i<A3.size1;i++){
+		A3[i,i] = fixrand.NextDouble()*10;
+		for(int j=0; j<i; j++){
+			A3[j,i] = fixrand.NextDouble()*10;
+			A3[i,j] = -A3[j,i];
+		}
+	}
+	matrix.print2(A3,1);
+	Error.Write($"{A3[0,1]:f2}\n");
+	/*
+	int sweeps2 = diag.jacobian(A3,V3,e3);
+	for(int i =0; i<e3.size; i++){
+		Error.Write($"e[{i}] = {e3[i]}\n");
+	}
+	*/
 
 	return 0;
 }
