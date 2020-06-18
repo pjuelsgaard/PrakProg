@@ -3,5 +3,8 @@ set out 'B.svg'
 set title "Time of operation"
 set xlabel "Dimension n of matrix"
 set ylabel "Time (ticks)"
-plot 'out.txt' using 1:3 with lines title "Cubic fit"\
-	, '' using 1:2 with points title "Measurements"
+plot 'out.txt' using 1:3 with lines title "Cubic fit to normal routine"\
+	, '' using 1:2 with points title "Normal routine"\
+	, '' using 1:5 with points title "Value-by-value"
+#plot 'out.txt' using 1:4 with points title "Normal routine"\
+#	, '' using 1:6 with points title "Value-by-value"
