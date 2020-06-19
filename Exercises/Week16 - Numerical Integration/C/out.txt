@@ -1,0 +1,8 @@
+The result, which should be 1.77245385090552 gave 1.77245363314606+-5.4910481335467E-07 in 3135 iterations
+The result, which should be 0.886226925452758 gave 0.886208378727853+-5.69001796991257E-07 in 1521 iterations
+The result, which should be -0.886226925452758 gave -0.886208378634977+-5.71769291062704E-07 in 1281 iterations
+The values returned for the same 3 integrals by o8av are
+1.77245411516459
+0.886227057582295
+-0.886227057582295
+ Although the integral from 0-> NegInfty had to be manually rearranged for o8av

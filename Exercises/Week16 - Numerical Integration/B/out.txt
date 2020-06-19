@@ -1,0 +1,21 @@
+Test of integral 1/sqrt(x) from 0->1
+Method	Value			Err		Iterations
+RecInt	2			5.32413776522351E-11	695531818
+CC	2.00000000000047	4.72398675656864E-11	42350
+o8av	2.00000000004334
+
+Test of integral ln(x)/sqrt(x) from 0->1
+Method	Value			Err		Iterations
+RecInt	-4			5.50898719020592E-11	3804428965
+CC	-3.99987385646141	0.00111272494904316	171
+o8av	-3.9999999998744
+
+Test of integral 4*sqrt(1-x*x) from 0->1
+Method	Value			Err		Iterations	Time
+RecInt	3.1415926535898		4.52467568890545E-11	85754	10257
+CC	3.14159265358979	6.93091695198523E-11	98866	33076
+o8av	3.1415926541947						37
+
+We see that the CC integration routine takes much fewer iterations to reach a desirable result, although it lacksa bit of accuracy compared to the recursive.
+ However, the last integral seemed rather difficult for the CC routine.
+ The o8av routine is less precise, but is MUCH faster.

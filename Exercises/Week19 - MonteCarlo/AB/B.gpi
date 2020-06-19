@@ -1,0 +1,8 @@
+set term svg background rgb "white"
+set out "B.svg"
+set xlabel "1/Sqrt(N)"
+set ylabel "Error"
+set title "Plot and fit of the error from plain MonteCarlo"
+plot 'out.txt' index 0 title "Measurements" pt 7 ps 2\
+	, '' index 1 title "1/Sqrt(N) Fit" with lines
+

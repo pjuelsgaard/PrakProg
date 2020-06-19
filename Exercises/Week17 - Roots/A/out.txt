@@ -1,0 +1,7 @@
+The minimum of testfun (-2(1-x[0]),-2(1-x[1])) is
+0.999999945302761
+0.999999945302761
+
+A minima of Rosenbrock's valley is at
+1.00000000052636
+1.00000000052636E-07

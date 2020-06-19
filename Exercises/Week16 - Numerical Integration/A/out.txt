@@ -1,0 +1,2 @@
+Integrating sqrt(x) from 0->1 gave 0.666666679685227+-5.61741727120821E-07. Analytically should be 0.667.
+Integrating 4*sqrt(1+x*x) from 0->1 gave 3.14159265769177+-8.43106021810109E-07. Analytically should give pi.

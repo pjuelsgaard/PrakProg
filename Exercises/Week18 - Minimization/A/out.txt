@@ -1,0 +1,2 @@
+For Rosenbrock's valley, the minimum was found at [0.999924947061952,0.99984880063049] in 57 steps
+For Himmelblau's function, the minimum was found at [2.99999973592209,1.99999978357506] in 9 steps

@@ -1,0 +1,9 @@
+set term svg background rgb "white"
+set out "B3.svg"
+set xlabel "T (days)"
+set ylabel "Infectious"
+set title "Number of infectious according to SIR model"
+plot "out.txt" index 0 using 1:4 title "Tc=2 days" with lines\
+	, '' index 1 using 1:4 title "Tc=4 days" with lines\
+	, '' index 2 using 1:4 title "Tc=6 days" with lines
+

@@ -1,0 +1,6 @@
+set term svg background rgb "white"
+set out "A.svg"
+set xlabel "t"
+set ylabel "y"
+set title "Van der Pol Oscillator"
+plot "out.txt" title "Numerical solution" with lines
