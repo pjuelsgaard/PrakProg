@@ -18,7 +18,7 @@ A.exe : A.cs matlib.dll
 B.exe : B.cs matlib.dll
 	mcs $< -reference:$(word 2, $^) > $@
 
-matlib.dll : ~/matlib/matrix/vector.cs ~/matlib/ode/ode.cs
+matlib.dll : vector.cs ode.cs
 	mcs -target:library -out:$@ $^
 
 

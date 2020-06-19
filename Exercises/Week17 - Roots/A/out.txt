@@ -5,3 +5,4 @@ The minimum of testfun (-2(1-x[0]),-2(1-x[1])) is
 A minima of Rosenbrock's valley is at
 1.00000000052636
 1.00000000052636E-07
+ For both functions, this fits the analytic solutions

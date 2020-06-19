@@ -22,7 +22,7 @@ public static int Main(string[] args){
 		ts.Add(double.Parse(ws[0]));
 		lny.Add(Math.Log(double.Parse(ws[1])));
 		delta_lny.Add(1.0/20); // Error prop on ln(y) with delta_y=y/20
-		Write("{0}\t{1}\t{2}\n", double.Parse(ws[0]), double.Parse(ws[1]), double.Parse(ws[1])/20);
+		Error.Write("{0}\t{1}\t{2}\n", double.Parse(ws[0]), double.Parse(ws[1]), double.Parse(ws[1])/20);
 	}while(true);
 	// Part A)
 	// Constructing the A matrix from Ordinary Least Squares Problem (7)
@@ -52,9 +52,9 @@ public static int Main(string[] args){
 	Func<double, double, double ,double> F = (t, a1, l1) => a1*Math.Exp(l1*t);
 	// Uncertainty of y is not calculated w. error propagation
 
-	Write("\n\n");
+	Error.Write("\n\n");
 	while(x<22){
-		Write("{0}\t{1}\t{2}\t{3}\n", x, F(x, a, neg_l),F(x, a+Math.Sqrt(var[0]), neg_l-Math.Sqrt(var[1])), F(x, a-Math.Sqrt(var[0]), neg_l+Math.Sqrt(var[1])));  //F(x)+sigma_F*Math.Exp(F(x)), F(x)-sigma_F*Math.Exp(F(x)) ); // This outcommented part is by using error propagation
+		Error.Write("{0}\t{1}\t{2}\t{3}\n", x, F(x, a, neg_l),F(x, a+Math.Sqrt(var[0]), neg_l-Math.Sqrt(var[1])), F(x, a-Math.Sqrt(var[0]), neg_l+Math.Sqrt(var[1])));  //F(x)+sigma_F*Math.Exp(F(x)), F(x)-sigma_F*Math.Exp(F(x)) ); // This outcommented part is by using error propagation
 		x += 1e-1;
 	}
 	Write("\n\nt_1/2 = {0:f4} +- {1:f4}, which is relatively close to the modern accepted value of 3.6319 days\n", -Math.Log(2)/neg_l, Math.Sqrt(var[1])*2*Math.Log(2)/neg_l/neg_l);

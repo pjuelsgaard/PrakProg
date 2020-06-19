@@ -11,4 +11,4 @@ matlib.dll : ../matrix.cs ../vector.cs ../root.cs
 	mcs -target:library -out:$@ $^
 
 clean :
-	rm -f *.dll *.txt
+	rm -f *.dll *.txt *.exe

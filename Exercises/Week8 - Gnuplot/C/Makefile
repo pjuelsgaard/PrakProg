@@ -14,7 +14,7 @@ main.exe : main.cs math.dll
 
 
 
-cmath.dll: ~/matlib/complex.cs ~/matlib/cmath.cs
+cmath.dll: ../complex.cs ../cmath.cs
 	mcs $^ -target:library -out:$@
 
 

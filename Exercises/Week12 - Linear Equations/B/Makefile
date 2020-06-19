@@ -7,7 +7,7 @@ out.txt : B.exe
 B.exe : B.cs matrix.dll
 	mcs $< -reference:$(word 2, $^)
 
-matrix.dll : ../A/matrix.cs ~/matlib/matrix/vector.cs
+matrix.dll : ../A/matrix.cs ../vector.cs
 	mcs $^ -target:library -out:$@
 
 

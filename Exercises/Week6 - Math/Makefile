@@ -8,7 +8,7 @@ out.txt : main.exe
 
 main.exe : main.cs cmath.dll
 	mcs $(CSFLAGS) -out:main.exe -reference:cmath.dll -reference:world.dll main.cs
-cmath.dll : ~/matlib/complex.cs ~/matlib/cmath.cs
+cmath.dll : complex.cs cmath.cs
 	mcs $^ -target:library -out:$@
 	cp ~/matlib/cmath.dll .
 

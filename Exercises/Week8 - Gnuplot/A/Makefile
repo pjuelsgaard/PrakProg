@@ -32,7 +32,7 @@ main-erf.exe : main-erf.cs math.dll
 
 
 
-math.dll: ../gamma.cs erf.cs ~/matlib/complex.cs ~/matlib/cmath.cs
+math.dll: ../gamma.cs erf.cs ../complex.cs ../cmath.cs
 	mcs -target:library -out:$@ $^
 
 

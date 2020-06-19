@@ -1,0 +1,9 @@
+set term svg background rgb "white"
+set out "B.svg"
+set xlabel "x"
+set ylabel "y"
+set title "Derivative and antiderivative of xExp(-x^2)"
+plot "out.txt" index 2 using 1:3 title "Original derivative" with lines\
+	, '' index 2 using 1:2 title "ANN fit of derivative" with lines\
+	, '' index 3 using 1:3 title "Original antiderivative" with lines\
+	, '' index 3 using 1:2 title "ANN fit of antiderivative" with lines

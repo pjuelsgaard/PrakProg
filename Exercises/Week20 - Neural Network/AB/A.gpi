@@ -1,0 +1,7 @@
+set term svg background rgb "white"
+set out "A.svg"
+set xlabel "x"
+set ylabel "y"
+set title "xExp(-x^2)"
+plot "out.txt" index 0 title "Original function" with lines\
+	, '' index 1 title "ANN fit" with lines\

@@ -1,0 +1,7 @@
+Part B:
+At the chosen maximal radius of 8 Bohr radii, we find the lowest energy to be -0.499975102444506
+As can be seen in B.svg, the solutions start to diverge close to the maximal R_max
+
+Part C:
+A comparison of how the lowest energy approaches the exact result (-1/2) for the simple and improved conditions
+ It is evident that the improved condition converges on much smaller R_max.

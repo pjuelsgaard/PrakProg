@@ -15,9 +15,8 @@ AB.exe: AB.cs matlib.dll
 C.exe : C.cs matlib.dll
 	mcs $< -reference:$(word 2, $^)
 
-LIBDIR = ~/matlib
-SRC = $(LIBDIR)/integration/quado8a.cs
-SRC += $(LIBDIR)/integration/quado4a.cs
+SRC = quado8a.cs
+SRC += quado4a.cs
 
 matlib.dll : $(SRC)
 	mcs $^ -target:library -out:$@

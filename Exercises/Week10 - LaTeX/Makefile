@@ -12,10 +12,9 @@ si.exe : si.cs math.dll
 	mcs $< -reference:$(word 2, $^) -out:$@
 
 
-LIBDIR = ~/matlib/integration
-SRC = $(LIBDIR)/quado8a.cs
-SRC += $(LIBDIR)/quadc7a.cs
-SRC += $(LIBDIR)/quado4a.cs
+SRC = quado8a.cs
+SRC += quadc7a.cs
+SRC += quado4a.cs
 math.dll : $(SRC)
 	mcs $^ -target:library -out:$@
 

@@ -9,7 +9,7 @@ out.txt : epsilon.exe
 epsilon.exe : epsilon.cs cmath.dll BoolApprox.dll
 	mcs $(CSFLAGS) -out:epsilon.exe -reference:cmath.dll -reference:BoolApprox.dll epsilon.cs
 
-cmath.dll : ~/matlib/complex.cs ~/matlib/cmath.cs
+cmath.dll : complex.cs cmath.cs
 	mcs $^ -target:library -out:$@
 
 BoolApprox.dll : BoolApprox.cs
