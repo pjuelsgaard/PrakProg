@@ -38,7 +38,7 @@ public static int Main(){
 	List<vector> ys = res.Item2;
 
 	for(int i=0; i<xs.Count; i++){
-		Write("{0}\t{1}\n", xs[i], ys[i][0]);
+		Write("{0}\t{1}\t{2}\n", xs[i], ys[i][0], Math.Cos(xs[i]));
 	}
 	return 0;
 

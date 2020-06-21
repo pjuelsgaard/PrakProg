@@ -24,6 +24,7 @@ public static int Main(){
 	
 	Write("For Rosenbrock's valley, the minimum was found at [{0},{1}] in {2} steps\n", Rmin[0],Rmin[1],Rn);
 	Write("For Himmelblau's function, the minimum was found at [{0},{1}] in {2} steps\n", Hmin[0],Hmin[1],Hn);
+	Write("Analytically, the minima should be at Rosenbrock: [1,1] and Himmelblau: [3,2]\n");
 
 	return 0;
 }

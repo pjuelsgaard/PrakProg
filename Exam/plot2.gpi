@@ -1,0 +1,7 @@
+set term svg background rgb "white"
+set out "plot2.svg"
+set xlabel "z.Im"
+set ylabel "y.Im"
+set title "Imaginary solution to y'=Exp(z)"
+plot "out.txt" index 0 using 4:5 title "Numerical solution" with lines\
+	, '' index 0 using 4:6 title "Analytical solution?" with lines

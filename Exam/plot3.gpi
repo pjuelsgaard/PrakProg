@@ -1,0 +1,7 @@
+set term svg background rgb "white"
+set out "plot3.svg"
+set xlabel "z.Re"
+set ylabel "y.Im"
+set title "Error function, real solution"
+plot "out.txt" index 1 using 1:2 title "Numerical solution" with lines\
+	, '' index 1 using 1:3 title "Approximation" with lines

@@ -2,5 +2,6 @@ set term svg background rgb "white"
 set out "A.svg"
 set xlabel "t"
 set ylabel "y"
-set title "Van der Pol Oscillator"
-plot "out.txt" title "Numerical solution" with lines
+set title "Cosine"
+plot "out.txt" using 1:2 title "Numerical solution" pt 7 ps 0.5\
+	, '' using 1:3 title "Cos(x)" with lines

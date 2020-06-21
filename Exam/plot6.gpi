@@ -1,0 +1,7 @@
+set term svg background rgb "white"
+set out "plot6.svg"
+set xlabel "z.Im"
+set ylabel "y.Im"
+set title "Error function, imaginary solution, separately treated"
+plot "out.txt" index 2 using 4:5 title "Numerical solution" with lines\
+	, '' index 2 using 4:6 title "Approximation" with lines
